@@ -236,7 +236,7 @@ namespace Renci.SshNet
         {
             OperationTimeout = Timeout.InfiniteTimeSpan;
             BufferSize = 1024 * 16;
-            _remotePathTransformation = serviceFactory.CreateRemotePathDoubleQuoteTransformation();
+            _remotePathTransformation = serviceFactory.CreateRemotePathBlankTransformation();
         }
 
         /// <summary>
@@ -313,7 +313,7 @@ namespace Renci.SshNet
 
                 // Pass only the directory part of the path to the server, and use the (hidden) -d option to signal
                 // that we expect the target to be a directory.
-                if (!channel.SendExecRequest($"scp -t -d {_remotePathTransformation.Transform(posixPath.Directory)}"))
+                if (!channel.SendExecRequest($"scp -t {_remotePathTransformation.Transform(posixPath.Directory)}"))
                 {
                     throw SecureExecutionRequestRejectedException();
                 }

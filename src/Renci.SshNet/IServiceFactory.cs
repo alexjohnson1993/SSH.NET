@@ -149,6 +149,17 @@ namespace Renci.SshNet
         IRemotePathTransformation CreateRemotePathDoubleQuoteTransformation();
 
         /// <summary>
+        /// Creates an <see cref="IRemotePathTransformation"/> that encloses a path in double quotes, and escapes
+        /// any embedded double quote with a backslash.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="IRemotePathTransformation"/> that encloses a path in double quotes, and escapes any
+        /// embedded double quote with a backslash.
+        /// with a shell.
+        /// </returns>
+        IRemotePathTransformation CreateRemotePathBlankTransformation();
+
+        /// <summary>
         /// Creates an <see cref="IConnector"/> that can be used to establish a connection
         /// to the server identified by the specified <paramref name="connectionInfo"/>.
         /// </summary>
